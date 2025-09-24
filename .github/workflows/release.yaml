@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write  # needed to push tags and GitHub releases
+  contents: write  
 
 jobs:
   release:
@@ -17,7 +17,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # important to see tags
+          fetch-depth: 0  
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -27,18 +27,21 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install python-semantic-release
+          pip install python-semantic-release build
 
-      - name: Bump version and create tag
+      - name: Run semantic-release (version)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GIT_COMMITTER_NAME: "github-actions[bot]"
           GIT_COMMITTER_EMAIL: "github-actions[bot]@users.noreply.github.com"
         run: semantic-release version
 
-      - name: Publish release on GitHub
+      - name: Run semantic-release (publish GitHub release)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GIT_COMMITTER_NAME: "github-actions[bot]"
           GIT_COMMITTER_EMAIL: "github-actions[bot]@users.noreply.github.com"
         run: semantic-release publish
+
+      - name: Build distributions
+        run: python -m build
