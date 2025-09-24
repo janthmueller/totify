@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "totify"
-version = "0.1.0-alpha.1"
+version = "1.0.0"
 readme = "README.md"
 
 description = "Totem Keyboard Notifications for Linux"
