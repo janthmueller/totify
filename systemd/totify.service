@@ -1,0 +1,7 @@
+[Unit]
+Description=Totem Keyboard Notifier
+
+[Service]
+Type=oneshot
+ExecStart=totify
+

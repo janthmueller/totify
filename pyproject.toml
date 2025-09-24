@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "totify"
+version = "0.1.0-alpha.1"
+readme = "README.md"
+
+description = "Totem Keyboard Notifications for Linux"
+requires-python = ">=3.8"
+
+keywords = ["notify", "keyboard", "totem-keyboard", "notifications", "linux"]
+
+classifiers = [
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3 :: Only"
+]
+
+dependencies = [
+  "dbus-next>=0.2.3,<0.3.0"
+]
+
+[[project.authors]]
+name = "Jan T. Müller"
+email = "mail@jantmueller.com"
+
+[project.license]
+text = "MIT"
+
+[project.urls]
+homepage = "https://github.com/janthmueller/totify"
+documentation = "https://janthmueller.github.io/totify/"
+source = "https://github.com/janthmueller/totify"
+tracker = "https://github.com/janthmueller/totify/issues"
+
+[tool.setuptools.packages.find]
+exclude = ["tests"]
+
+[project.scripts]
+totify = "totify:main"
+
+[tool.semantic_release]
+version_toml = ["pyproject.toml:project.version"]
+commit_parser = "conventional"
+branch = "main"  
+upload_to_repository = true
+upload_to_release = true
+build_command = "python -m build"
+
